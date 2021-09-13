@@ -24,9 +24,7 @@ var a = 2;
 console.log( a ); // 2
 ```
 
-The key difference we can observe here between a function declaration and a function expression relates to where its name is bound as an identifier.
-
-`(function foo(){ .. })` as an expression means the identifier `foo` is found *only* in the scope where the `..` indicates, not in the outer scope. Hiding the name `foo` inside itself means it does not pollute the enclosing scope unnecessarily.
+`(function foo(){ .. })` is using a function expression, `foo` is not visible in the outside scope neither in the created function scope.
 
 ### Anonymous vs. Named
 
