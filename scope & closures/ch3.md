@@ -132,4 +132,3 @@ console.log( bar ); // ReferenceError
 ### `const`
 
 `const` also creates block scoped variables. Unlike `var` and `let`, it needs an assignment. Its value can't be reassigned.
-```
