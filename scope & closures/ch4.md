@@ -1,8 +1,6 @@
 # You Don't Know JS: Scope & Closures
 # Chapter 4: Hoisting
 
-## Chicken Or The Egg?
-
 Program is not read top to bottom.
 
 Consider this code:
