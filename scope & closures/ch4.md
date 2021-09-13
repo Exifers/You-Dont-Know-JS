@@ -84,7 +84,7 @@ foo = function() {
 
 ## Functions First
 
-Both function declarations and variable declarations are hoisted. But a subtle detail (that *can* show up in code with multiple "duplicate" declarations) is that functions are hoisted first, and then variables.
+Functions are hoisted first, and then variables. Hoisted functions override hoisted variables with the same name on the same scope.
 
 Consider:
 
@@ -116,7 +116,7 @@ foo = function() {
 };
 ```
 
-Notice that `var foo` was the duplicate (and thus ignored) declaration, even though it came before the `function foo()...` declaration, because function declarations are hoisted before normal variables.
+Notice that `var foo` was the duplicate (and thus ignored) declaration.
 
 While multiple/duplicate `var` declarations are effectively ignored, subsequent function declarations *do* override previous ones.
 
@@ -136,8 +136,6 @@ function foo() {
 }
 ```
 
-While this all may sound like nothing more than interesting academic trivia, it highlights the fact that duplicate definitions in the same scope are a really bad idea and will often lead to confusing results.
-
 Function declarations that appear inside of normal blocks typically hoist to the enclosing scope, rather than being conditional as this code implies:
 
 ```js
@@ -153,13 +151,3 @@ else {
 ```
 
 However, it's important to note that this behavior is not reliable and is subject to change in future versions of JavaScript, so it's probably best to avoid declaring functions in blocks.
-
-## Review (TL;DR)
-
-We can be tempted to look at `var a = 2;` as one statement, but the JavaScript *Engine* does not see it that way. It sees `var a` and `a = 2` as two separate statements, the first one a compiler-phase task, and the second one an execution-phase task.
-
-What this leads to is that all declarations in a scope, regardless of where they appear, are processed *first* before the code itself is executed. You can visualize this as declarations (variables and functions) being "moved" to the top of their respective scopes, which we call "hoisting".
-
-Declarations themselves are hoisted, but assignments, even assignments of function expressions, are *not* hoisted.
-
-Be careful about duplicate declarations, especially mixed between normal var declarations and function declarations -- peril awaits if you do!
