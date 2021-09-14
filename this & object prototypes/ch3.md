@@ -1,13 +1,9 @@
 # You Don't Know JS: *this* & Object Prototypes
 # Chapter 3: Objects
 
-In Chapters 1 and 2, we explained how the `this` binding points to various objects depending on the call-site of the function invocation. But what exactly are objects, and why do we need to point to them? We will explore objects in detail in this chapter.
-
 ## Syntax
 
-Objects come in two forms: the declarative (literal) form, and the constructed form.
-
-The literal syntax for an object looks like this:
+two forms: the declarative (literal) form, and the constructed form :
 
 ```js
 var myObj = {
@@ -16,20 +12,16 @@ var myObj = {
 };
 ```
 
-The constructed form looks like this:
-
 ```js
 var myObj = new Object();
 myObj.key = value;
 ```
 
-The constructed form and the literal form result in exactly the same sort of object. The only difference really is that you can add one or more key/value pairs to the literal declaration, whereas with constructed-form objects, you must add the properties one-by-one.
-
-**Note:** It's extremely uncommon to use the "constructed form" for creating objects as just shown. You would pretty much always want to use the literal syntax form. The same will be true of most of the built-in objects (see below).
+There is no difference in the result.
 
 ## Type
 
-Objects are the general building block upon which much of JS is built. They are one of the 6 primary types (called "language types" in the specification) in JS:
+There are 6 primary types (called "language types" in the specification) in JS:
 
 * `string`
 * `number`
@@ -38,19 +30,21 @@ Objects are the general building block upon which much of JS is built. They are 
 * `undefined`
 * `object`
 
-Note that the *simple primitives* (`string`, `number`, `boolean`, `null`, and `undefined`) are **not** themselves `objects`. `null` is sometimes referred to as an object type, but this misconception stems from a bug in the language which causes `typeof null` to return the string `"object"` incorrectly (and confusingly). In fact, `null` is its own primitive type.
+*simple primitives* (`string`, `number`, `boolean`, `null`, and `undefined`) are **not** themselves `objects`.
 
-**It's a common mis-statement that "everything in JavaScript is an object". This is clearly not true.**
+`null` a bug in the language which causes `typeof null` to return the string `"object"` incorrectly (and confusingly). In fact, `null` is its own primitive type.
 
-By contrast, there *are* a few special object sub-types, which we can refer to as *complex primitives*.
+**"everything in JavaScript is an object" is clearly not true.**
+
+There *are* special object sub-types, which we can refer to as *complex primitives*.
 
 `function` is a sub-type of object (technically, a "callable object"). Functions in JS are said to be "first class" in that they are basically just normal objects (with callable behavior semantics bolted on), and so they can be handled like any other plain object.
 
-Arrays are also a form of objects, with extra behavior. The organization of contents in arrays is slightly more structured than for general objects.
+Arrays are also a form of objects, with extra behavior.
 
 ### Built-in Objects
 
-There are several other object sub-types, usually referred to as built-in objects. For some of them, their names seem to imply they are directly related to their simple primitives counter-parts, but in fact, their relationship is more complicated, which we'll explore shortly.
+There are other object sub-types, usually referred to as built-in objects. For some of them, their names seem to imply they are directly related to their simple primitives counter-parts, but in fact, their relationship is more complicated, which we'll explore shortly.
 
 * `String`
 * `Number`
@@ -62,9 +56,7 @@ There are several other object sub-types, usually referred to as built-in object
 * `RegExp`
 * `Error`
 
-These built-ins have the appearance of being actual types, even classes, if you rely on the similarity to other languages such as Java's `String` class.
-
-But in JS, these are actually just built-in functions. Each of these built-in functions can be used as a constructor (that is, a function call with the `new` operator -- see Chapter 2), with the result being a newly *constructed* object of the sub-type in question. For instance:
+These built-ins have the appearance of being actual types, even classes, but in JS, these are actually just built-in functions. Each of these built-in functions can be used as a constructor (that is, a function call with the `new` operator -- see Chapter 2), with the result being a newly *constructed* object of the sub-type in question. For instance:
 
 ```js
 var strPrimitive = "I am a string";
@@ -78,8 +70,6 @@ strObject instanceof String;					// true
 // inspect the object sub-type
 Object.prototype.toString.call( strObject );	// [object String]
 ```
-
-We'll see in detail in a later chapter exactly how the `Object.prototype.toString...` bit works, but briefly, we can inspect the internal sub-type by borrowing the base default `toString()` method, and you can see it reveals that `strObject` is an object that was in fact created by the `String` constructor.
 
 The primitive value `"I am a string"` is not an object, it's a primitive literal and immutable value. To perform operations on it, such as checking its length, accessing its individual character contents, etc, a `String` object is required.
 
